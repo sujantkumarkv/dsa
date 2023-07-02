@@ -37,10 +37,10 @@ n = len(arr)
 def maxheap():
     # Build a maxheap.
     for i in range(n, -1, -1):
-        heapify(arr, n, i)
-    print(arr)
+        max_heapify(arr, n, i)
+    # print(arr)
 
-def heapify(arr, n, i):
+def max_heapify(arr, n, i):
     largest = i  # Initialize largest as root
     l = 2 * i + 1     # left = 2*i + 1
     r = 2 * i + 2     # right = 2*i + 2
@@ -58,6 +58,14 @@ def heapify(arr, n, i):
         arr[i], arr[largest] = arr[largest], arr[i]  # swap
 
         # Heapify the root again as it can be smaller than its children
-        heapify(arr, n, largest)
+        max_heapify(arr, n, largest)
+
+def maxheap_sort():
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i] # swap
+        max_heapify(arr, i, 0)
+
 
 maxheap()
+maxheap_sort()
+print("sorted maxheap: ", arr)
